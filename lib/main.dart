@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:weather_app_youtube/bloc/weather_bloc_bloc.dart';
 import 'package:weather_app_youtube/screens/home_screen.dart';
-import 'package:geolocator/geolocator.dart';
 
 void main() {
   runApp(const MainApp());
@@ -16,7 +16,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: MainScreen(),
     );
@@ -44,12 +44,15 @@ class _MainScreenState extends State<MainScreen> {
     return _determinePosition();
   }
 
-  Future<void> checkPermission(Permission permission, BuildContext context) async {
+  Future<void> checkPermission(
+      Permission permission, BuildContext context) async {
     final status = await permission.request();
     if (status.isGranted) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Permission Is Granted")));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Permission Is Granted")));
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Permission Is Denied")));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Permission Is Denied")));
     }
   }
 
@@ -72,7 +75,8 @@ class _MainScreenState extends State<MainScreen> {
     }
 
     if (permission == LocationPermission.deniedForever) {
-      throw Exception('Location permissions are permanently denied, we cannot request permissions.');
+      throw Exception(
+          'Location permissions are permanently denied, we cannot request permissions.');
     }
 
     // When we reach here, permissions are granted and we can
@@ -94,9 +98,10 @@ class _MainScreenState extends State<MainScreen> {
             );
           } else if (snapshot.hasData) {
             return BlocProvider<WeatherBlocBloc>(
-              create: (context) => WeatherBlocBloc()..add(
-                FetchWeather(snapshot.data as Position),
-              ),
+              create: (context) => WeatherBlocBloc()
+                ..add(
+                  FetchWeather(snapshot.data as Position),
+                ),
               child: const HomeScreen(),
             );
           } else {
