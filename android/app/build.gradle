@@ -1,5 +1,5 @@
 plugins {
-    id "com.sostech.weather"
+    id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
 }
@@ -23,7 +23,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.sostech.weather"
+    namespace "com.example.weather_app_youtube"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
@@ -49,6 +49,7 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true;
     }
 
     buildTypes {
@@ -64,4 +65,6 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation 'com.android.support:multidex:1.0.3'
+}

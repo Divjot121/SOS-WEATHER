@@ -240,7 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   const SizedBox(height: 3),
                                   Text(
-                                    "${(state.weather.temperature!.celsius! + 3).clamp(-30, 50).toStringAsFixed(1)} °C",
+                                    "${(state.weather.temperature!.celsius! + 3).clamp(-30, 50).toStringAsFixed(0)} °C",
                                     style: const TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w700,
@@ -269,7 +269,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   const SizedBox(height: 3),
                                   Text(
-                                    "${(state.weather.temperature!.celsius! - 3).clamp(-30, 50).toStringAsFixed(1)} °C",
+                                    "${(state.weather.temperature!.celsius! - 3).clamp(-30, 50).toStringAsFixed(0)} °C",
                                     style: const TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w700,

@@ -39,11 +39,6 @@ class _MainScreenState extends State<MainScreen> {
     _determinePositionAndPermission = _init();
   }
 
-  Future<Position?> _init() async {
-    await checkPermission(Permission.location, context);
-    return _determinePosition();
-  }
-
   Future<void> checkPermission(
       Permission permission, BuildContext context) async {
     final status = await permission.request();
@@ -54,6 +49,11 @@ class _MainScreenState extends State<MainScreen> {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Permission Is Denied")));
     }
+  }
+
+  Future<Position?> _init() async {
+    await checkPermission(Permission.location, context);
+    return _determinePosition();
   }
 
   Future<Position> _determinePosition() async {
